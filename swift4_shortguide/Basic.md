@@ -128,7 +128,7 @@ if isGood {
 
 ```
 
-Tuples 元组 (类似于数组)
+### Tuples 元组 (类似于数组)
 
 Tuples就是把多个同一组的变量值容纳到一个变量中
 ```
@@ -156,7 +156,7 @@ typealias HttpStatusCode = (statusCode:Int,statusDescrption:String)
 var http500Error:HttpStatusCode = (500,"Service Error")
 ```
 
-Optional
+### Optional
 
 Optioanl表示一个值可能为空，也可能不为空
 
@@ -197,7 +197,7 @@ if let _ = aliaName {
 ```
 使用 ! 来将Optional转为背后的对象
 
-Error Handling 错误处理(与OC不同，Swift允许方法定义错误)
+### Error Handling 错误处理(与OC不同，Swift允许方法定义错误)
 
 ```
 //这个方法可能会throws错误
@@ -226,3 +226,33 @@ do {
   
 }
 ```
+
+### Assertions and Preconditions 断言
+
+Assertions
+
+```
+let age = -10
+//第一种方式，使用assert来断言
+assert(age > 0,"年龄不应该少于0，这是非法的")
+//第二种方式，使用assertionFailure来断言
+if age < 0 {
+    assertionFailure("年龄不应该少于0，这是非法的")
+}
+```
+
+Preconditions
+
+```
+let age = -10
+precondition(age > 0 ,"年龄不应该少于0")
+if age < 0 {
+    preconditionFailure("年龄不应该少于0")
+}
+```
+Assertions & Preconditions
+
+<li>Assertions只在Debug模式下有效，Preconditions在Debug与Production下都有效
+<li>Production下Assertions不会执行
+<li>开发过程中，可以多使用Assertions
+<li>对应条件下的Assertions或Preconditions失败，程序会中止运行
